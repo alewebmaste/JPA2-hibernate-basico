@@ -1,0 +1,45 @@
+package br.com.calum.financas.teste;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import br.com.calum.financas.modelo.Conta;
+import br.com.calum.financas.modelo.TipoMovimentacao;
+import br.com.calum.financas.util.JPAUtil;
+
+public class TesteConsultaFuncaoCount {
+
+	public static void main(String[] args) {
+
+
+		EntityManager em = new JPAUtil().getEntityManager();
+		em.getTransaction().begin();
+		
+
+		Conta conta =  new Conta();
+		conta.setId(2);
+		
+		String jpql = "select distinct avg(m.valor) from Movimentacao m where m.conta = :pConta " +
+		" and m.tipo = pTipo" + 
+		" group by m.data";
+
+		Query query =  em.createQuery(jpql);
+		query.setParameter("pTipo", TipoMovimentacao.SAIDA);
+		query.setParameter("pConta", conta);
+		
+		List<Double> medias = query.getResultList();
+		
+		for (Double media : medias) {
+			System.out.println("A media do dia é " + media);
+		}
+		
+		
+		em.getTransaction().commit();
+		em.close();
+		
+		
+	}
+
+}

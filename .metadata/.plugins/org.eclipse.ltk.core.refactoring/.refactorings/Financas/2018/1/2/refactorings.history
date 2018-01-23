@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;testeJPQL.java&apos; to &apos;Financas/src/br.com.calum.financas.teste&apos;&#x0D;&#x0A;- Original project: &apos;Financas&apos;&#x0D;&#x0A;- Destination element: &apos;Financas/src/br.com.calum.financas.teste&apos;&#x0D;&#x0A;- Original element: &apos;br.com.calum.financas.teste.testeJPQL.java&apos;" description="Copy compilation unit" destination="/src&lt;br.com.calum.financas.teste" element1="/src&lt;br.com.calum.financas.teste{testeJPQL.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1515770942434" units="1" version="1.0"/>
+</session>

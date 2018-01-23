@@ -1,0 +1,40 @@
+package br.com.calum.financas.teste;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import br.com.calum.financas.modelo.Conta;
+import br.com.calum.financas.modelo.Movimentacao;
+import br.com.calum.financas.modelo.TipoMovimentacao;
+import br.com.calum.financas.util.JPAUtil;
+
+public class testeJPQL {
+
+	public static void main(String[] args) {
+		
+		EntityManager em = new JPAUtil().getEntityManager();
+		em.getTransaction().begin();
+		
+		BigDecimal valor = new BigDecimal(500.00);
+		
+		String jpql = "select sum(m.valor) from Movimentacao m where m.conta = p.conta " + 
+		" and m.tipo = :pTipo " + 
+		" order by m.valor desc "; 
+
+		Query query =  em.createQuery(jpql);
+		query.setParameter("pValor", valor);
+		query.setParameter("pTipo", TipoMovimentacao.SAIDA);
+		
+		BigDecimal soma = (BigDecimal) query.getSingleResult();
+				
+		System.out.println("A soma é " + soma);
+		
+		em.getTransaction().commit();
+		em.close();
+		
+	}
+	
+}
